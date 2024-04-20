@@ -1,0 +1,8 @@
+{
+    "orders": [
+      {
+        "name": "Cat",
+        "order": "images/cat.png"
+      }
+    ]
+  }
