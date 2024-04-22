@@ -4,6 +4,7 @@ import './App.css';
 import { useState } from 'react'
 import Selector from './Selector'
 import Toggle from './Toggle'
+import Submit from './Submit';
 
 // App component
 function App() {
@@ -11,10 +12,13 @@ function App() {
   // Define drink orders
   const drink_order = {
     "base": "Hot Choccy",
-    "toppings": [],
+    "toppings": ["Sprinkles, "],
     "notes": "NA"
   };
   const [order, updateOrder] = useState(drink_order)
+  const [orderList, setOrderList] = useState(null)
+
+
   
   // Define drink names
   const drink1 = "Hot Chocolate";
@@ -36,7 +40,12 @@ function App() {
     }
   }
   
-    
+
+  // Some flask code
+  const addOrder = (drink1, order) => {
+    const newOrds = [...orderList, {name: drink1, order:order}]
+    setOrderList(newOrds)
+  }    
   return (
     <div className="App">
       <header className="App-header">
@@ -53,7 +62,7 @@ function App() {
         <Toggle onClick={() => updateToppings("Raspberry, ")} text={"Raspberry"} />
         <Toggle onClick={() => updateToppings("Whipped Cream, ")} text={"Whipped Cream"} />
         <Toggle onClick={() => updateToppings("Chocolate Sauce, ")} text={"Chocolate Sauce"} />
-        <button> Submit </button>
+        <Submit addOrder={addOrder} order={order}/>
 
       </div>
     </div>

@@ -2,7 +2,7 @@ import json
 from flask import Flask, send_from_directory, request, redirect
 
 BUILD_FOLDER = "frontend/build"
-PICTURES_FILE = "pictures.json"
+ORDER_FILE = "orders.json"
 
 
 app = Flask(__name__, static_folder=None)
@@ -15,48 +15,48 @@ def root():
     return redirect("/index.html")
 
 
-@app.route("/pictures")
-def get_pictures():
-    return PICTURES
+@app.route("/orders")
+def get_orders():
+    return ORDERS
 
 
-@app.route("/add-picture", methods=["POST"])
-def addPicture():
+@app.route("/add-order", methods=["POST"])
+def addOrder():
     body = request.json
     ##print(body)
-    PICTURES["pictures"].append(body)
-    write_pictures()
+    ORDERS["orders"].append(body)
+    write_orders()
     return "ok"
 
 
-@app.route("/delete-picture", methods=["POST"])
+@app.route("/delete-order", methods=["POST"])
 def deletePicture():
     body = request.json
-    to_delete = body["picture"]
+    to_delete = body["orders"]
     ##print(to_delete)
-    new_pics = []
-    for (i, pic) in enumerate(PICTURES["pictures"]):
+    new_orders = []
+    for (i, ord) in enumerate(ORDERS["orders"]):
         if i != to_delete:
-            new_pics.append(pic)
-    PICTURES["pictures"] = new_pics
-    write_pictures()
+            new_orders.append(ord)
+    ORDERS["orders"] = new_orders
+    write_orders()
     return "ok"
 
 
-@app.route("/<path:p>")
-def serveFile(p):
-    ##print(f"asking for file {p}")
-    return send_from_directory(BUILD_FOLDER, p)
+# @app.route("/<path:p>")
+# def serveFile(p):
+#     ##print(f"asking for file {p}")
+#     return send_from_directory(BUILD_FOLDER, p)
 
 
-def write_pictures():
-    with open(PICTURES_FILE, "wt") as fp:
-        json.dump(PICTURES, fp, indent=2)
+def write_orders():
+    with open(ORDER_FILE, "wt") as fp:
+        json.dump(ORDERS, fp, indent=2)
 
 
-def read_pictures():
-    with open(PICTURES_FILE, "rt") as fp:
+def read_orders():
+    with open(ORDER_FILE, "rt") as fp:
         return json.load(fp)
 
 
-PICTURES = read_pictures()
+ORDERS = read_orders()

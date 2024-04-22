@@ -1,8 +1,12 @@
 {
     "orders": [
       {
-        "name": "Cat",
-        "order": "images/cat.png"
+        "name": "Order1",
+        "order": {
+          "base": "Hot Choccy",
+          "toppings": ["Whip Cream", "Raspberry"],
+          "notes": "NA"
+        }
       }
     ]
   }
