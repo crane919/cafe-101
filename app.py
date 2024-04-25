@@ -1,18 +1,20 @@
 import json
 from flask import Flask, send_from_directory, request, redirect
+from flask_cors import CORS
 
-BUILD_FOLDER = "frontend/build"
 ORDER_FILE = "orders.json"
 
 
 app = Flask(__name__, static_folder=None)
-
+CORS(app)
 
 @app.route("/")
 def root():
     # Simple redirect so that navigating to "/"
     # redirects to "/index.html"
-    return redirect("/index.html")
+    json_file = "orders.json"
+    data = json.load(open(json_file))
+    return data
 
 
 @app.route("/orders")
@@ -26,7 +28,7 @@ def addOrder():
     ##print(body)
     ORDERS["orders"].append(body)
     write_orders()
-    return "ok"
+    return "ok" #status code
 
 
 @app.route("/delete-order", methods=["POST"])

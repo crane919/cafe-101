@@ -9,7 +9,7 @@ export default function Submit ({addOrder, order}){
             name: "OrderName",
             order: order
         }
-        fetch('/add-order', {
+        fetch('http://127.0.0.1:5000/add-order', {
             method: 'POST',
             headers: {
             "Content-Type": 'application/json'
