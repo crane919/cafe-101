@@ -16,7 +16,6 @@ export default function Submit ({addOrder, order}){
             },
             body: JSON.stringify(bodyValue)
         })
-        console.log("Testttt")
         }
     }
     // const handleClickDelete = () => {

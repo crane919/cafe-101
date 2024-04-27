@@ -25,7 +25,7 @@ def get_orders():
 @app.route("/add-order", methods=["POST"])
 def addOrder():
     body = request.json
-    ##print(body)
+    print(body)
     ORDERS["orders"].append(body)
     write_orders()
     return "ok" #status code
