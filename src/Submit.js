@@ -1,6 +1,7 @@
+import { clear } from '@testing-library/user-event/dist/clear'
 import { useState } from 'react'
 
-export default function Submit ({ order}){
+export default function Submit ({ order, clearOrder}){
     console.log('Adding order to json')
     const handleClickAdd = (evt) => {
         if (order) {
@@ -16,7 +17,9 @@ export default function Submit ({ order}){
             body: JSON.stringify(bodyValue)
         })
         }
+        clearOrder()
     }
+    //clearOrder
     // const handleClickDelete = () => {
     //     deleteCurrentPic()
     // }

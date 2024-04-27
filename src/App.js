@@ -11,12 +11,14 @@ function App() {
 
   // Define drink orders
   const drink_order = {
-    "base": "Hot Chocolate",
+    "name": "",
+    "base": "",
     "toppings": [],
-    "notes": "NA"
+    "notes": ""
   };
 
   const drinkList = {
+    "": [],
     "Hot Chocolate": ["Heavy Hot Chocccy", "Hot Choccy"],
     "Tea Latte": ["Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
   }
@@ -28,8 +30,15 @@ function App() {
   // States
   const [order, updateOrder] = useState(drink_order)
   const [dropDown, setDropDown] = useState([]);
-   
-  // Function to update the base
+  
+  //Helper functions to updates states
+
+  // Function to update name
+  function updateName(newName){
+    updateOrder({ ...order, name: newName });
+  };
+
+  // Functions to update the base
   function updateBase(newBase){
     updateOrder({ ...order, base: newBase });
   };
@@ -55,6 +64,22 @@ function App() {
     <Selector onClick={() => updateToppings(name)} text={name} />
   ));
 
+  // Function to update name
+  function updateNotes(newNotes){
+    updateOrder({ ...order, notes: newNotes });
+  };
+
+
+  // Clear Everything
+  function clearOrder(){
+    updateOrder({
+      "name": "",
+      "base": "Hot Chocolate",
+      "toppings": [],
+      "notes": ""
+    })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -64,28 +89,33 @@ function App() {
         
         <div className="layout">
           <div className='left-panel'>
-            <p>
-            Welcome to the Cafe 101 website: Your current drink order is {order["base"]} with {order["toppings"]}. Special notes include: {order["notes"]}.
-            </p>
+
+            <p> Welcome to the Cafe 101 website: Your current drink order is {order["base"]} with {order["toppings"]}. Special notes include: {order["notes"]}.</p>
             <label>
-              Name: <input name="name"/>
+              Name: <input name="name" value={order.name} onChange={(e) => updateName(e.target.value)} />
             </label>
+            <p> Pick you drink type!</p>
             <div className='row'>
               <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} />
               <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} />
             </div>
 
-            <select name="drink">
-              {dropDown} 
-            </select>
-            <div className='row'>
-              {toppings}
-            </div>
-            <label>
-              Special Notes: <textarea />
-            </label>      
-           
-            <Submit order={order}/>
+            {order.base && (
+              <>
+                <p>Select your drink in the dropdown:</p>
+                <select name="drink">
+                  {dropDown} 
+                </select>
+                <div className='row'>
+                  {toppings}
+                </div>
+                <label>
+                  Special Notes: <textarea notes="notes" value={order.notes} onChange={(e) => updateNotes(e.target.value)}/>
+                </label>   
+                <Submit order={order} clearOrder={clearOrder}/>
+              </>
+            )}
+            
           </div>
           <div className='right-panel'>
 
