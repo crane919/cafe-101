@@ -29,6 +29,7 @@ function App() {
   // States
   const [order, updateOrder] = useState(drink_order)
   const [dropDown, setDropDown] = useState([]);
+  const [orders, setOrders] = useState(null);
    
   // Function to update the base
   function updateBase(newBase){
@@ -89,8 +90,8 @@ function App() {
             <Submit order={order}/>
           </div>
           <div className='right-panel'>
-            <p>Current Orders:</p>
-            <Fetch />
+            <h3>Current Orders:</h3>
+            <Fetch orders={orders} setOrders={setOrders}/>
           </div>
 
 

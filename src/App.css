@@ -40,4 +40,8 @@
 .row {
   flex-direction: row;
 }
+.order-item {
+  border-radius: 10px;
+  background-color: azure;
+}
 
