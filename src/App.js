@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Selector from './Selector'
 import Toggle from './Toggle'
 import Submit from './Submit';
+import Fetch from './Fetch';
 
 // App component
 function App() {
@@ -21,7 +22,7 @@ function App() {
   const [dropDown, setDropDown] = useState([]);
 
   const drinkList = {
-    "Hot Chocolate": ["Heavy Hot Chocccy", "Hot Choccy"],
+    "Hot Chocolate": ["Heavy Hot Choccy", "Hot Choccy"],
     "Tea Latte": ["Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
   }
   
@@ -88,7 +89,8 @@ function App() {
             <Submit addOrder={addOrder} order={order}/>
           </div>
           <div className='right-panel'>
-
+            <p>Current Orders:</p>
+            <Fetch />
           </div>
 
 
