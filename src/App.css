@@ -35,3 +35,11 @@
 .row {
   flex-direction: row;
 }
+
+.selected {
+  background-color: red;
+}
+
+.not-selected {
+  background-color: gray;
+}

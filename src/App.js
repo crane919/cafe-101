@@ -96,8 +96,8 @@ function App() {
             </label>
             <p> Pick you drink type!</p>
             <div className='row'>
-              <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} />
-              <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} />
+              <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={drink_order['base'] === 'Hot Chocolate'}/>
+              <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} isSelected={drink_order['base'] === 'Tea Latte'} />
             </div>
 
             {order.base && (

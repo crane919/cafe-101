@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-export default function Selector ({onClick, text}){
+export default function Selector ({onClick, text, isSelected}){
     // const handleClickAdd = (evt) => {
     //     console.log("clickeeddd")
     // }
     return (
-        <button onClick={onClick}>
+        <button className={isSelected ? 'selected' : 'not-selected'} onClick={onClick}>
             {text}
         </button>
       
