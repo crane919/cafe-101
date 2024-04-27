@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
-export default function Submit ({addOrder, order}){
+export default function Submit ({ order}){
     console.log('Adding order to json')
     const handleClickAdd = (evt) => {
         if (order) {
-        //addOrder("OrderName", order)
         const bodyValue = {
             name: "OrderName",
             order: order

@@ -12,23 +12,33 @@ function App() {
   // Define drink orders
   const drink_order = {
     "base": "Hot Chocolate",
-    "toppings": ["Sprinkles"],
+    "toppings": [],
     "notes": "NA"
   };
-  
-  const [order, updateOrder] = useState(drink_order)
-  const [orderList, setOrderList] = useState(null)
-  const [dropDown, setDropDown] = useState([]);
 
   const drinkList = {
     "Hot Chocolate": ["Heavy Hot Chocccy", "Hot Choccy"],
     "Tea Latte": ["Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
   }
-  
+  const toppingList = ["Strawberry Puree", "Raspberry Extract", "Peppermint Extract",
+    "Caramel Syrup", "Brown Sugar Syrup", "Lavender Syrup", "Rose Syrup",
+    "Chocolate Sauce", "Caramel Sauce", "Whipped Cream", "Marshmallows", "Rose Petals",
+    "Vanilla Cold Foam"]
+
+  // States
+  const [order, updateOrder] = useState(drink_order)
+  const [dropDown, setDropDown] = useState([]);
+   
   // Function to update the base
   function updateBase(newBase){
     updateOrder({ ...order, base: newBase });
   };
+
+  useEffect(() => {
+    setDropDown(drinkList[order["base"]].map((l) => (
+      <option key={l} value={l}>{l}</option>
+    )));
+  }, [order["base"]]);
 
   // Function to update the toppings
   function updateToppings(topping) {
@@ -40,18 +50,10 @@ function App() {
       updateOrder({ ...order, toppings: [...order["toppings"], topping] });
     }
   }
-   
-  useEffect(() => {
-    setDropDown(drinkList[order["base"]].map((l) => (
-      <option key={l} value={l}>{l}</option>
-    )));
-  }, [order["base"]]);
-
-  // Some flask code
-  const addOrder = (drink1, order) => {
-    const newOrds = [...orderList, {name: drink1, order:order}]
-    setOrderList(newOrds)
-  }    
+  
+  const toppings = toppingList.map((name) => (
+    <Selector onClick={() => updateToppings(name)} text={name} />
+  ));
 
   return (
     <div className="App">
@@ -77,15 +79,13 @@ function App() {
               {dropDown} 
             </select>
             <div className='row'>
-              <Toggle onClick={() => updateToppings("Raspberry, ")} text={"Raspberry"} />
-              <Toggle onClick={() => updateToppings("Whipped Cream, ")} text={"Whipped Cream"} />
-              <Toggle onClick={() => updateToppings("Chocolate Sauce, ")} text={"Chocolate Sauce"} />
+              {toppings}
             </div>
             <label>
               Special Notes: <textarea />
             </label>      
            
-            <Submit addOrder={addOrder} order={order}/>
+            <Submit order={order}/>
           </div>
           <div className='right-panel'>
 
