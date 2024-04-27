@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Selector from './Selector'
 import Toggle from './Toggle'
 import Submit from './Submit';
@@ -11,16 +11,18 @@ function App() {
 
   // Define drink orders
   const drink_order = {
-    "base": "Hot Choccy",
-    "toppings": ["Sprinkles, "],
+    "base": "Hot Chocolate",
+    "toppings": ["Sprinkles"],
     "notes": "NA"
   };
+  
   const [order, updateOrder] = useState(drink_order)
   const [orderList, setOrderList] = useState(null)
+  const [dropDown, setDropDown] = useState([]);
 
-  const drink_type = {
-    "hotChoccy": [" ", "Heavy Hot Chocccy", "Hot Choccy"],
-    "teaLatte": ["Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
+  const drinkList = {
+    "Hot Chocolate": ["Heavy Hot Chocccy", "Hot Choccy"],
+    "Tea Latte": ["Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
   }
   
   // Function to update the base
@@ -38,21 +40,19 @@ function App() {
       updateOrder({ ...order, toppings: [...order["toppings"], topping] });
     }
   }
-  
-  // const drink_type () => if statment
-  // function typeSelect(drinkType){
-  // if drink type is hot chocolate{}
-  // return hot choccy
-  // else return tea
-  // }
-  
-
+   
+  useEffect(() => {
+    setDropDown(drinkList[order["base"]].map((l) => (
+      <option key={l} value={l}>{l}</option>
+    )));
+  }, [order["base"]]);
 
   // Some flask code
   const addOrder = (drink1, order) => {
     const newOrds = [...orderList, {name: drink1, order:order}]
     setOrderList(newOrds)
   }    
+
   return (
     <div className="App">
       <header className="App-header">
@@ -74,9 +74,7 @@ function App() {
             </div>
 
             <select name="drink">
-              <option value="NA"> </option>
-              <option value="heavy-hot-choccy">Heavy Hot Choccy</option>
-              <option value="hot-choccy">Hot Choccy</option>
+              {dropDown} 
             </select>
             <div className='row'>
               <Toggle onClick={() => updateToppings("Raspberry, ")} text={"Raspberry"} />
