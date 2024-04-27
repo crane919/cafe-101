@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Selector from './Selector'
 import Toggle from './Toggle'
 import Submit from './Submit';
+import Fetch from './Fetch';
 
 // App component
 function App() {
@@ -30,6 +31,9 @@ function App() {
   // States
   const [order, updateOrder] = useState(drink_order)
   const [dropDown, setDropDown] = useState([]);
+  const [orders, setOrders] = useState(null);
+   
+  // Function to update the base
   
   //Helper functions to updates states
 
@@ -118,7 +122,8 @@ function App() {
             
           </div>
           <div className='right-panel'>
-
+            <h3>Current Orders:</h3>
+            <Fetch orders={orders} setOrders={setOrders}/>
           </div>
 
 

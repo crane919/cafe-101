@@ -23,14 +23,19 @@
   align-items: flex-start;
   gap: 16;
 }
-.left-panel {
+.left-panel, .right-panel {
   align-items: center;
   width: 50vw;
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: center; 
+}
+.left-panel{
   background-color: bisque;
+}
+.right-panel {
+  background-color: blanchedalmond;
 }
 .row {
   flex-direction: row;
@@ -43,3 +48,8 @@
 .not-selected {
   background-color: gray;
 }
+.order-item {
+  border-radius: 10px;
+  background-color: azure;
+}
+
