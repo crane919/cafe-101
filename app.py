@@ -36,14 +36,9 @@ def addOrder():
 
 @app.route("/delete-order", methods=["POST"])
 def deleteOrder():
-    body = request.json
-    to_delete = body["orders"]
-    print(to_delete)
-    new_orders = []
-    for (i, ord) in enumerate(ORDERS["orders"]):
-        if i != to_delete:
-            new_orders.append(ord)
-    ORDERS["orders"] = new_orders
+    id_to_del = request.json
+    print(id_to_del)
+    del ORDERS["orders"][id_to_del]
     write_orders()
     return "ok"
 

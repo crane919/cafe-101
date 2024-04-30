@@ -5,7 +5,7 @@ export default function Fetch({ orders, setOrders }) {
         const intervalId = setInterval(() => {
             console.log('Checking for new orders...');
             fetchOrders();
-        }, 100); // Adjust the interval time as needed (e.g., 5000 milliseconds = 5 seconds)
+        }, 500); // Adjust the interval time as needed (e.g., 5000 milliseconds = 5 seconds)
 
         return () => clearInterval(intervalId); // Cleanup function to clear the interval on component unmount
     }, [setOrders]);
@@ -37,6 +37,7 @@ export default function Fetch({ orders, setOrders }) {
                         </ul>
                     </div>
                     <p className='order-notes'>Notes: {notes}</p>
+                    <MarkDone orderID={orderId}/>
                 </div>
             );
         });
