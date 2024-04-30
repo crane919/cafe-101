@@ -11,7 +11,7 @@ import Fetch from './Fetch';
 function App() {
 
   // Define drink orders
-  const drink_order = {
+  const drinkOrder = {
     "name": "",
     "base": "",
     "toppings": [],
@@ -29,7 +29,7 @@ function App() {
     "Vanilla Cold Foam"]
 
   // States
-  const [order, updateOrder] = useState(drink_order)
+  const [order, updateOrder] = useState(drinkOrder)
   const [dropDown, setDropDown] = useState([]);
   const [orders, setOrders] = useState(null);
    
@@ -65,7 +65,7 @@ function App() {
   }
   
   const toppings = toppingList.map((name) => (
-    <Selector onClick={() => updateToppings(name)} text={name} />
+    <Selector onClick={() => updateToppings(name)} text={name} isSelected={order["toppings"].includes(name)}/>
   ));
 
   // Function to update name
@@ -78,7 +78,7 @@ function App() {
   function clearOrder(){
     updateOrder({
       "name": "",
-      "base": "Hot Chocolate",
+      "base": "",
       "toppings": [],
       "notes": ""
     })
@@ -100,8 +100,8 @@ function App() {
             </label>
             <p> Pick you drink type!</p>
             <div className='row'>
-              <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={drink_order['base'] === 'Hot Chocolate'}/>
-              <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} isSelected={drink_order['base'] === 'Tea Latte'} />
+              <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={order['base'] === 'Hot Chocolate'}/>
+              <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} isSelected={order['base'] === 'Tea Latte'} />
             </div>
 
             {order.base && (
