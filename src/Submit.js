@@ -6,7 +6,7 @@ export default function Submit ({ order, clearOrder}){
     const handleClickAdd = (evt) => {
         if (order) {
         const bodyValue = {
-            name: "OrderName",
+            name: Date.now(),
             order: order
         }
         fetch('http://127.0.0.1:5000/add-order', {
@@ -19,17 +19,6 @@ export default function Submit ({ order, clearOrder}){
         }
         clearOrder()
     }
-    //clearOrder
-    // const handleClickDelete = () => {
-    //     deleteCurrentPic()
-    // }
-    // const handleChangeName = (evt) => {
-    //     setName(evt.target.value)
-
-    // }
-    // const handleChangeUrl = (evt) => {
-    //     setUrl(evt.target.value)
-    // }
     return (
         <button onClick={handleClickAdd}>
             Submit this order!
