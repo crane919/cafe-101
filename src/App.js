@@ -104,12 +104,19 @@ function App() {
             <label>
               Name: <input name="name" value={order.name} onChange={(e) => updateName(e.target.value)} />
             </label>
-            <p> Pick you drink type!</p>
-            <div className='row'>
-              <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={order['base'] === 'Hot Chocolate'}/>
-              <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} isSelected={order['base'] === 'Tea Latte'} />
-            </div>
 
+            {order.name && (
+              <>
+                <p> Pick you drink type!</p>
+                <div className='row'>
+                  <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={order['base'] === 'Hot Chocolate'}/>
+                  <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} isSelected={order['base'] === 'Tea Latte'} />
+                </div>             
+              </>
+            )}
+
+
+            
             {order.base && (
               <>
                 <p>Select your drink in the dropdown:</p>
