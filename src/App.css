@@ -1,20 +1,32 @@
+:root {
+  --dark-green: #2c473c;
+  --mid-green: #6d7b75;
+  --sand: #d1c2b7;
+  --light-mauve: #bb91a1;
+  --mauve: #725460;
+  --green-gray: #BBC5AA;
+}
+html {
+  background-color: var(--mid-green);
+}
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #8fa2c7;
-  min-height: 10vh;
+  background-color: var(--dark-green);
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(32px + 2vmin);
+  font-family: "Bisdak";
   color: white;
 }
 
 .chosen {
-  background-color: red;
+  background-color: var(--mauve);
 }
 
 .layout {
@@ -24,32 +36,47 @@
   gap: 16;
 }
 .left-panel, .right-panel {
+  background-color: var(--sand);
   align-items: center;
   width: 50vw;
+  margin: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   justify-content: center; 
+  border-radius: 12px;
 }
-.left-panel{
-  background-color: bisque;
-}
-.right-panel {
-  background-color: blanchedalmond;
+.left-panel {
+  gap: 24px;
 }
 .row {
   flex-direction: row;
 }
 
 .selected {
-  background-color: red;
+  color: white;
+  background-color: var(--mauve);
 }
 
 .not-selected {
-  background-color: gray;
+  background-color: var(--light-mauve);
 }
 .order-item {
+  display: flex;
+  padding: 12px;
+  margin: 24px;
   border-radius: 10px;
-  background-color: azure;
+  background-color: var(--light-mauve);
+}
+.order-body{
+  flex-direction: column;
+}
+button {
+  border: none;
+  border-radius: 8px;
+}
+.order-item button{
+  border-radius: 12px;
+  background-color: var(--mauve);
+  color: white;
 }
 

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Bisdak";
+  src: local("Bisdak"),
+  url("./fonts/Bisdak/Bisdak.ttf") format("truetype");
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

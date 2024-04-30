@@ -25,18 +25,20 @@ export default function Fetch({ orders, setOrders }) {
             const { name, base, baseType, toppings, notes } = orders[orderId];
             return (
                 <div className='order-item' key={orderId}>
-                    <p className='order-name'>Name: {name}</p>
-                    <p className='order-base'>Base: {base}</p>
-                    <p className='order-baseType'>Base Type: {baseType}</p>
-                    <div className='order-toppings'>
-                        Toppings:
-                        <ul>
-                            {toppings.map((topping, index) => (
-                                <li key={index}>{topping}</li>
-                            ))}
-                        </ul>
+                    <div className='order-body'>
+                        <p className='order-name'>Name: {name}</p>
+                        <p className='order-base'>Base: {base}</p>
+                        <p className='order-baseType'>Base Type: {baseType}</p>
+                        <div className='order-toppings'>
+                            Toppings:
+                            <ul>
+                                {toppings.map((topping, index) => (
+                                    <li key={index}>{topping}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <p className='order-notes'>Notes: {notes}</p>
                     </div>
-                    <p className='order-notes'>Notes: {notes}</p>
                     <MarkDone orderID={orderId}/>
                 </div>
             );
