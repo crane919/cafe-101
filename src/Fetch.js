@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import MarkDone from './MarkDone'
 export default function Fetch ({orders, setOrders}) {
     if (orders == null) {
         console.log('Getting Orders...')
@@ -10,7 +10,8 @@ export default function Fetch ({orders, setOrders}) {
         // console.log(orders)
         const drinks = orders.map(({name, order})=> (
             <div className='order-item'>
-                <p className='order-name'>Name: {name}</p>
+                <p className='order-name'>Order-ID: {name}</p>
+                <p className='order-name'>Name: {order.name}</p>
                 <p className='order-base'>Base: {order.base}</p>      
                 <div className='order-toppings'>
                 Toppings:
@@ -21,7 +22,7 @@ export default function Fetch ({orders, setOrders}) {
                         ))
                         }
                     </ul>
-                
+                <MarkDone orderID={name} orderBody={order}/>
                 </div>
             </div>
         ))

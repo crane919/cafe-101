@@ -32,10 +32,10 @@ def addOrder():
 
 
 @app.route("/delete-order", methods=["POST"])
-def deletePicture():
+def deleteOrder():
     body = request.json
     to_delete = body["orders"]
-    ##print(to_delete)
+    print(to_delete)
     new_orders = []
     for (i, ord) in enumerate(ORDERS["orders"]):
         if i != to_delete:
