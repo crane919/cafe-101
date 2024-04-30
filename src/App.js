@@ -14,14 +14,15 @@ function App() {
   const drinkOrder = {
     "name": "",
     "base": "",
+    "baseType": "",
     "toppings": [],
     "notes": ""
   };
 
   const drinkList = {
     "": [],
-    "Hot Chocolate": ["Heavy Hot Chocccy", "Hot Choccy"],
-    "Tea Latte": ["Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
+    "Hot Chocolate": ["","Heavy Hot Chocccy", "Hot Choccy"],
+    "Tea Latte": ["","Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
   }
   const toppingList = ["Strawberry Puree", "Raspberry Extract", "Peppermint Extract",
     "Caramel Syrup", "Brown Sugar Syrup", "Lavender Syrup", "Rose Syrup",
@@ -32,9 +33,7 @@ function App() {
   const [order, updateOrder] = useState(drinkOrder)
   const [dropDown, setDropDown] = useState([]);
   const [orders, setOrders] = useState(null);
-   
-  // Function to update the base
-  
+     
   //Helper functions to updates states
 
   // Function to update name
@@ -47,11 +46,17 @@ function App() {
     updateOrder({ ...order, base: newBase });
   };
 
+  // Function to update the order
+  function updateBaseType(newBaseType){
+    updateOrder({ ...order, baseType: newBaseType });
+  };
+
   useEffect(() => {
-    setDropDown(drinkList[order["base"]].map((l) => (
-      <option key={l} value={l}>{l}</option>
+    setDropDown(drinkList[order["base"]].map((baseType) => (
+      <option key={baseType} onClick={() => updateBaseType(baseType)} value={baseType}>{baseType}</option>
     )));
   }, [order["base"]]);
+  
 
   // Function to update the toppings
   function updateToppings(topping) {
@@ -79,6 +84,7 @@ function App() {
     updateOrder({
       "name": "",
       "base": "",
+      "baseType": "",
       "toppings": [],
       "notes": ""
     })
@@ -109,7 +115,11 @@ function App() {
                 <p>Select your drink in the dropdown:</p>
                 <select name="drink">
                   {dropDown} 
-                </select>
+                </select> 
+              </>)}
+
+            {order.baseType && (
+              <>
                 <div className='row'>
                   {toppings}
                 </div>
@@ -119,7 +129,7 @@ function App() {
                 <Submit order={order} clearOrder={clearOrder}/>
               </>
             )}
-            
+
           </div>
           <div className='right-panel'>
             <h3>Current Orders:</h3>
