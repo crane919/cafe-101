@@ -1,12 +1,22 @@
 {
-    "orders": [
-      {
-        "name": "Order1",
-        "order": {
-          "base": "Hot Choccy",
-          "toppings": ["Whip Cream", "Raspberry"],
-          "notes": "NA"
-        }
-      }
-    ]
+  "orders": {
+    "1714502285804": {
+      "name": "aj",
+      "base": "Tea Latte",
+      "baseType": "Matcha Latte",
+      "toppings": [
+        "Vanilla Cold Foam"
+      ],
+      "notes": ""
+    },
+    "1714503006742": {
+      "name": "d",
+      "base": "Hot Chocolate",
+      "baseType": "Hot Choccy",
+      "toppings": [
+        "Whipped Cream"
+      ],
+      "notes": ""
+    }
   }
+}

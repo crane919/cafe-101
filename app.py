@@ -26,9 +26,12 @@ def get_orders():
 def addOrder():
     body = request.json
     print(body)
-    ORDERS["orders"].append(body)
-    write_orders()
-    return "ok" #status code
+    order_id = list(body.keys())[0]  # Extract the unique ID from the body
+    order_info = body[order_id]  # Extract the order information
+    ORDERS["orders"][order_id] = order_info  # Add the order to the ORDERS dictionary
+    write_orders()  # Assuming write_orders() function is defined elsewhere to update the orders data
+    return "ok"  # Status code
+
 
 
 @app.route("/delete-order", methods=["POST"])
