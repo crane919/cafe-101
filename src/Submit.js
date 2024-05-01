@@ -18,7 +18,7 @@ export default function Submit({ order, clearOrder }) {
   };
 
   return (
-    <button onClick={handleClickAdd}>
+    <button onClick={handleClickAdd} className='selected'>
       Submit this order!
     </button>
   );
