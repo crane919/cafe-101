@@ -15,6 +15,7 @@ function App() {
     "name": "",
     "base": "",
     "baseType": "",
+    "stirIns": "",
     "toppings": [],
     "notes": ""
   };
@@ -22,12 +23,13 @@ function App() {
   const drinkList = {
     "": [],
     "Hot Chocolate": ["","Heavy Hot Chocccy", "Hot Choccy"],
-    "Tea Latte": ["","Matcha Latte", "Chai Latte", "Londonfog", "Thai Latte", "Black Raspberry Latte"]
+    "Tea Latte": ["","Matcha Latte", "Chai Latte", "London Fog", "Thai Latte", "Black Raspberry Latte"]
   }
-  const toppingList = ["Strawberry Puree", "Raspberry Extract", "Peppermint Extract",
-    "Caramel Syrup", "Brown Sugar Syrup", "Lavender Syrup", "Rose Syrup",
-    "Chocolate Sauce", "Caramel Sauce", "Whipped Cream", "Marshmallows", "Rose Petals",
-    "Vanilla Cold Foam"]
+  const stirInList = ["Strawberry Puree", "Raspberry Extract", "Peppermint Extract",
+    "Caramel Syrup", "Brown Sugar Syrup", "Lavender Syrup", "Rose Syrup"]
+  
+  const toppingList = ["Chocolate Sauce", "Caramel Sauce", "Whipped Cream", 
+  "Marshmallows", "Rose Petals", "Lavender Syrup", "Vanilla Cold Foam"]
 
   // States
   const [order, updateOrder] = useState(drinkOrder)
@@ -68,9 +70,24 @@ function App() {
       updateOrder({ ...order, toppings: [...order["toppings"], topping] });
     }
   }
+
+  // Function to update the stirIns
+  function updateStirIns(stirIns) {
+    // If the topping is already in the list, remove it
+    if (order["stirIns"].includes(stirIns)) {
+      updateOrder({ ...order, toppings: order["stirIns"].filter(item => item !== stirIns) });
+    } else {
+      // If the topping is not in the list, add it
+      updateOrder({ ...order, stirIns: [...order["stirIns"], stirIns] });
+    }
+  }
   
   const toppings = toppingList.map((name) => (
     <Selector onClick={() => updateToppings(name)} text={name} isSelected={order["toppings"].includes(name)}/>
+  ));
+
+  const stirIns = stirInList.map((name) => (
+    <Selector onClick={() => updateStirIns(name)} text={name} isSelected={order["stirIns"].includes(name)}/>
   ));
 
   // Function to update name
@@ -81,13 +98,7 @@ function App() {
 
   // Clear Everything
   function clearOrder(){
-    updateOrder({
-      "name": "",
-      "base": "",
-      "baseType": "",
-      "toppings": [],
-      "notes": ""
-    })
+    updateOrder(drinkOrder)
   }
 
   return (
@@ -114,9 +125,7 @@ function App() {
                 </div>             
               </>
             )}
-
-
-            
+           
             {order.base && (
               <>
                 <p>Select your drink in the dropdown:</p>
@@ -127,6 +136,11 @@ function App() {
 
             {order.baseType && (
               <>
+                <p>Stir-ins:</p>
+                <div className='row'>
+                  {stirIns}
+                </div>
+                <p>Toppings:</p>
                 <div className='row'>
                   {toppings}
                 </div>
