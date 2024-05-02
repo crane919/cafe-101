@@ -4,7 +4,6 @@ from flask_cors import CORS
 
 ORDER_FILE = "orders.json"
 
-
 app = Flask(__name__, static_folder=None)
 CORS(app)
 
@@ -16,11 +15,9 @@ def root():
     data = json.load(open(json_file))
     return data
 
-
 @app.route("/orders")
 def get_orders():
     return ORDERS
-
 
 @app.route("/add-order", methods=["POST"])
 def addOrder():
@@ -32,8 +29,6 @@ def addOrder():
     write_orders()  # Assuming write_orders() function is defined elsewhere to update the orders data
     return "ok"  # Status code
 
-
-
 @app.route("/delete-order", methods=["POST"])
 def deleteOrder():
     id_to_del = request.json
@@ -42,21 +37,12 @@ def deleteOrder():
     write_orders()
     return "ok"
 
-
-# @app.route("/<path:p>")
-# def serveFile(p):
-#     ##print(f"asking for file {p}")
-#     return send_from_directory(BUILD_FOLDER, p)
-
-
 def write_orders():
     with open(ORDER_FILE, "wt") as fp:
         json.dump(ORDERS, fp, indent=2)
 
-
 def read_orders():
     with open(ORDER_FILE, "rt") as fp:
         return json.load(fp)
-
 
 ORDERS = read_orders()
