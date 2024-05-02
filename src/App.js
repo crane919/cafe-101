@@ -3,9 +3,9 @@ import './App.css';
 
 import { useState, useEffect } from 'react'
 import Selector from './Selector'
-import Toggle from './Toggle'
 import Submit from './Submit';
 import Fetch from './Fetch';
+import DisplayOrder from './DisplayOrder';
 
 // App component
 function App() {
@@ -54,6 +54,11 @@ function App() {
     updateOrder({ ...order, milk: newMilk });
   };
 
+  // Function to update name
+  function updateNotes(newNotes){
+    updateOrder({ ...order, notes: newNotes });
+  };
+
   // Function to update the order
   function updateBaseType(newBaseType){
     updateOrder({ ...order, baseType: newBaseType });
@@ -87,23 +92,7 @@ function App() {
       updateOrder({ ...order, stirIns: [...order["stirIns"], stirIns] });
     }
   }
-
-  // // Function to format the toppings/strir-ins
-  function formatIngredients(stirIns, toppings) {
-    const combinedList = [...order["stirIns"], ...order["toppings"]];
-    return formatList(combinedList);
-  }
-
-  function formatList(list) { 
-    return list.map((item, index) => {
-      if (index === list.length - 1 && list.length > 1) {
-        return `and ${item}`;
-      } else {
-        return item;
-      }
-    }).join(', ');
-  }
-  
+ 
   const toppings = toppingList.map((name) => (
     <Selector onClick={() => updateToppings(name)} text={name} isSelected={order["toppings"].includes(name)}/>
   ));
@@ -111,12 +100,6 @@ function App() {
   const stirIns = stirInList.map((name) => (
     <Selector onClick={() => updateStirIns(name)} text={name} isSelected={order["stirIns"].includes(name)}/>
   ));
-
-  // Function to update name
-  function updateNotes(newNotes){
-    updateOrder({ ...order, notes: newNotes });
-  };
-
 
   // Clear Everything
   function clearOrder(){
@@ -129,7 +112,6 @@ function App() {
         <p>Cafe 101</p>
       </header>
       <div>
-        
         <div className="layout">
           <div className='left-panel'>
             {order.name ? (
@@ -138,19 +120,7 @@ function App() {
                 <h3>Welcome to the Cafe 101 website! Please enter your name:</h3>
             )}
 
-            <div className='curr-drink'>
-              {order.baseType && (order.stirIns.length > 0 || order.toppings.length > 0) && order.notes ? (
-                <p>Your current order: {order.baseType} with {formatIngredients(order.stirIns, order.toppings)}. Notes: {order.notes}</p>
-              ) : order.baseType && (order.stirIns.length > 0 || order.toppings.length > 0) ? (
-                <p>Your current order: {order.baseType} with {formatIngredients(order.stirIns, order.toppings)}.</p>
-              ) : order.baseType && order.notes ? (
-                <p>Your current order: {order.baseType}. Notes: {order.notes}</p>
-              ) : order.baseType ? (
-                <p>Your current order: {order.baseType}.</p>
-              ) : (
-                <p>It's time to create your custom drink!</p>
-              )}
-            </div>
+            <DisplayOrder order={order}/>
 
             <label>
               Name: <input name="name" value={order.name} onChange={(e) => updateName(e.target.value)} />
@@ -158,11 +128,6 @@ function App() {
 
             {order.name && (
               <>
-                {/* <p> Choose your milk!</p>
-                <div className='row'>
-                  <Selector onClick={() => updateMilk("Cow")} text={"Cow"} isSelected={order['milk'] === 'Cow'}/>
-                  <Selector onClick={() => updateMilk("Oat")} text={"Oat"} isSelected={order['milk'] === 'Oat'} />
-                </div>        */}
                 <p> Pick your drink type!</p>
                 <div className='row'>
                   <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={order['base'] === 'Hot Chocolate'}/>
@@ -204,11 +169,7 @@ function App() {
               <Fetch orders={orders} setOrders={setOrders}/>
             </div>
           </div>
-
-
         </div>
-        
-
       </div>
     </div>
   );
