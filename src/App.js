@@ -49,6 +49,11 @@ function App() {
     updateOrder({ ...order, base: newBase });
   };
 
+  // Functions to update milk type
+  function updateMilk(newMilk){
+    updateOrder({ ...order, milk: newMilk });
+  };
+
   // Function to update the order
   function updateBaseType(newBaseType){
     updateOrder({ ...order, baseType: newBaseType });
@@ -153,11 +158,17 @@ function App() {
 
             {order.name && (
               <>
+                {/* <p> Choose your milk!</p>
+                <div className='row'>
+                  <Selector onClick={() => updateMilk("Cow")} text={"Cow"} isSelected={order['milk'] === 'Cow'}/>
+                  <Selector onClick={() => updateMilk("Oat")} text={"Oat"} isSelected={order['milk'] === 'Oat'} />
+                </div>        */}
                 <p> Pick your drink type!</p>
                 <div className='row'>
                   <Selector onClick={() => updateBase("Hot Chocolate")} text={"Hot Chocolate"} isSelected={order['base'] === 'Hot Chocolate'}/>
                   <Selector onClick={() => updateBase("Tea Latte")} text={"Tea Latte"} isSelected={order['base'] === 'Tea Latte'} />
-                </div>             
+                </div>
+                       
               </>
             )}
            
