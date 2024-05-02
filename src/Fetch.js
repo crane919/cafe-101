@@ -26,7 +26,7 @@ export default function Fetch({ orders, setOrders }) {
             return (
                 <div className={`order-item${base === "Tea Latte" ? ' tea' : ' hot-chocolate'}`} key={orderId}>
                     <div className='order-body'>
-                        <div className='order-name'><strong>{name}'s Order</strong></div>
+                        <div className='order-name' style={{padding: '0px 8px'}}><strong>{name}'s Order</strong></div>
                         <div className='two-columns'>
                             <div className='order-drink'>
                                 <strong>Drink:</strong><br></br>
