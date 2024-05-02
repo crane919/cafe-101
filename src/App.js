@@ -189,7 +189,9 @@ function App() {
           </div>
           <div className='right-panel'>
             <h3>Current Orders:</h3>
-            <Fetch orders={orders} setOrders={setOrders}/>
+            <div className='orders'>
+              <Fetch orders={orders} setOrders={setOrders}/>
+            </div>
           </div>
 
 

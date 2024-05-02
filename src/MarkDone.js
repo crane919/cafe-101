@@ -15,7 +15,6 @@ export default function MarkDone ({orderID}){
     }
     return (
         <button onClick={handleClickDelete}>
-            Mark Order As Done
         </button>
       
     )

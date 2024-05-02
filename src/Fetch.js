@@ -17,27 +17,39 @@ export default function Fetch({ orders, setOrders }) {
             .catch(error => console.error('Error fetching orders:', error));
     };
 
-    if (!orders) {
+    if (!orders || Object.keys(orders) == 0) {
         return <p>No Orders.</p>;
     } else {
         const orderKeys = Object.keys(orders);
         const drinks = orderKeys.map(orderId => {
-            const { name, base, baseType, toppings, notes } = orders[orderId];
+            const { name, base, baseType, stirIns, toppings, notes } = orders[orderId];
             return (
-                <div className='order-item' key={orderId}>
+                <div className={`order-item${base === "Tea Latte" ? ' tea' : ' hot-chocolate'}`} key={orderId}>
                     <div className='order-body'>
-                        <p className='order-name'>Name: {name}</p>
-                        <p className='order-base'>Base: {base}</p>
-                        <p className='order-baseType'>Base Type: {baseType}</p>
-                        <div className='order-toppings'>
-                            Toppings:
-                            <ul>
-                                {toppings.map((topping, index) => (
-                                    <li key={index}>{topping}</li>
-                                ))}
-                            </ul>
+                        <div className='order-name'><strong>{name}'s Order</strong></div>
+                        <div className='two-columns'>
+                            <div className='order-drink'>
+                                <strong>Drink:</strong><br></br>
+                                {baseType}
+                            </div>
+                            <div className='order-stir-ins'>
+                                <strong>Stir-Ins:</strong>
+                                <ul style={{padding:'0px', margin:'0', listStyleType: 'none'}}>
+                                    {stirIns.map((stirIn, index) => (
+                                        <li key={index}>{stirIn}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className='order-toppings'>
+                                <strong>Toppings:</strong>
+                                <ul style={{padding:'0px', margin:'0', listStyleType: 'none'}}>
+                                    {toppings.map((topping, index) => (
+                                        <li key={index}>{topping}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                        <p className='order-notes'>Notes: {notes}</p>
+                    <p className='order-notes' style={{marginBottom: 0}}><strong>Notes:</strong><br></br>{notes}</p>
                     </div>
                     <MarkDone orderID={orderId}/>
                 </div>

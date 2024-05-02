@@ -64,16 +64,24 @@ html {
   display: flex;
   padding: 12px;
   margin: 24px;
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: var(--light-mauve);
-  width: 40vw;
+  width: 45vw;
   justify-content: space-between; /* Align items horizontally with space between them */
   position: relative; /* Positioning context for absolute positioning of button */
 }
 .order-body{
   flex-direction: column;
 }
-
+.tea {
+  border: 2px solid var(--mauve);
+}
+.order-name {
+  background-color: var(--mauve);
+  color: white;
+  margin: 4px 4px;
+  border-radius: 4px;
+}
 
 button {
   border: none;
@@ -87,7 +95,12 @@ button:hover {
 .order-item button {
   border-radius: 12px;
   background-color: var(--mauve);
-  color: white;
+  background-image: url(../public/check.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  width: 20%;
+  color: var(--mauve);
   margin: 0; 
   padding: 12px; /* Remove any padding */
   height: 100%; /* Make button height same as parent div */
@@ -100,4 +113,11 @@ button:hover {
   background-color: var(--light-mauve);
   border-radius: 10px;
   width: 40vw;
+}
+.two-columns {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: start;
+  gap: 8px 16px;
 }
