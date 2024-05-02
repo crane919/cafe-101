@@ -67,8 +67,8 @@ html {
   border-radius: 12px;
   background-color: var(--light-mauve);
   width: 40vw;
-  justify-content: space-between; /* Align items horizontally with space between them */
-  position: relative; /* Positioning context for absolute positioning of button */
+  justify-content: space-between;
+  position: relative;
 }
 .order-body{
   flex-direction: column;
@@ -102,11 +102,11 @@ button:hover {
   width: 20%;
   color: var(--mauve);
   margin: 0; 
-  padding: 12px; /* Remove any padding */
-  height: 100%; /* Make button height same as parent div */
-  position: absolute; /* Position absolutely within the parent div */
-  top: 0; /* Align button to the top edge of the parent div */
-  right: 0; /* Align button to the right edge of the parent div */
+  padding: 12px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .curr-drink {

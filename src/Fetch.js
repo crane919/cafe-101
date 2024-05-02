@@ -5,7 +5,7 @@ export default function Fetch({ orders, setOrders }) {
         const intervalId = setInterval(() => {
             console.log('Checking for new orders...');
             fetchOrders();
-        }, 500); // Adjust the interval time as needed (e.g., 5000 milliseconds = 5 seconds)
+        }, 500); // Time interval)
 
         return () => clearInterval(intervalId); // Cleanup function to clear the interval on component unmount
     }, [setOrders]);
