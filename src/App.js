@@ -29,7 +29,7 @@ function App() {
     "Caramel Syrup", "Brown Sugar Syrup", "Lavender Syrup", "Rose Syrup"]
   
   const toppingList = ["Chocolate Sauce", "Caramel Sauce", "Whipped Cream", 
-  "Marshmallows", "Rose Petals", "Lavender Syrup", "Vanilla Cold Foam"]
+  "Marshmallows", "Rose Petals", "Lavender Petals", "Vanilla Cold Foam"]
 
   // States
   const [order, updateOrder] = useState(drinkOrder)
