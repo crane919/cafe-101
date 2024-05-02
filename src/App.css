@@ -66,7 +66,7 @@ html {
   margin: 24px;
   border-radius: 12px;
   background-color: var(--light-mauve);
-  width: 45vw;
+  width: 40vw;
   justify-content: space-between; /* Align items horizontally with space between them */
   position: relative; /* Positioning context for absolute positioning of button */
 }
