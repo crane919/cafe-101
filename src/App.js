@@ -15,6 +15,7 @@ function App() {
     "name": "",
     "base": "",
     "baseType": "",
+    "milk": "",
     "stirIns": [],
     "toppings": [],
     "notes": ""
@@ -88,9 +89,7 @@ function App() {
     return formatList(combinedList);
   }
 
-  function formatList(list) {
-    if (list.length === 0) return 'BBBB'; // Return an empty string if the array is empty
-  
+  function formatList(list) { 
     return list.map((item, index) => {
       if (index === list.length - 1 && list.length > 1) {
         return `and ${item}`;
