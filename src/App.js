@@ -15,7 +15,7 @@ function App() {
     "name": "",
     "base": "",
     "baseType": "",
-    "stirIns": "",
+    "stirIns": [],
     "toppings": [],
     "notes": ""
   };
@@ -73,13 +73,31 @@ function App() {
 
   // Function to update the stirIns
   function updateStirIns(stirIns) {
-    // If the topping is already in the list, remove it
+    // If the stir-in is already in the list, remove it
     if (order["stirIns"].includes(stirIns)) {
-      updateOrder({ ...order, toppings: order["stirIns"].filter(item => item !== stirIns) });
+      updateOrder({ ...order, stirIns: order["stirIns"].filter(item => item !== stirIns) });
     } else {
-      // If the topping is not in the list, add it
+      // If the stir-in is not in the list, add it
       updateOrder({ ...order, stirIns: [...order["stirIns"], stirIns] });
     }
+  }
+
+  // // Function to format the toppings/strir-ins
+  function formatIngredients(stirIns, toppings) {
+    const combinedList = [...order["stirIns"], ...order["toppings"]];
+    return formatList(combinedList);
+  }
+
+  function formatList(list) {
+    if (list.length === 0) return 'BBBB'; // Return an empty string if the array is empty
+  
+    return list.map((item, index) => {
+      if (index === list.length - 1 && list.length > 1) {
+        return `and ${item}`;
+      } else {
+        return item;
+      }
+    }).join(', ');
   }
   
   const toppings = toppingList.map((name) => (
@@ -110,8 +128,26 @@ function App() {
         
         <div className="layout">
           <div className='left-panel'>
+            {order.name ? (
+              <h3>Hello, {order.name}!</h3>
+            ) : (
+                <h3>Welcome to the Cafe 101 website! Please enter your name:</h3>
+            )}
 
-            <p> Welcome to the Cafe 101 website: Your current drink order is {order["base"]} with {order["toppings"]}. Special notes include: {order["notes"]}.</p>
+            <div className='curr-drink'>
+              {order.baseType && (order.stirIns.length > 0 || order.toppings.length > 0) && order.notes ? (
+                <p>Your current order: {order.baseType} with {formatIngredients(order.stirIns, order.toppings)}. Notes: {order.notes}</p>
+              ) : order.baseType && (order.stirIns.length > 0 || order.toppings.length > 0) ? (
+                <p>Your current order: {order.baseType} with {formatIngredients(order.stirIns, order.toppings)}.</p>
+              ) : order.baseType && order.notes ? (
+                <p>Your current order: {order.baseType}. Notes: {order.notes}</p>
+              ) : order.baseType ? (
+                <p>Your current order: {order.baseType}.</p>
+              ) : (
+                <p>It's time to create your custom drink!</p>
+              )}
+            </div>
+
             <label>
               Name: <input name="name" value={order.name} onChange={(e) => updateName(e.target.value)} />
             </label>
