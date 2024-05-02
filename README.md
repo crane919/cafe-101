@@ -1,13 +1,26 @@
 # Cafe 101
 
 ## About the Application
-- Cafe 101 is a dorm room cafe run by one of the developers of this website. The cafe runs biweekly and sells custom hot chocolates and tea lattes.
-#### Challenges during Development
-- the most interesting challenges you encountered
+Cafe 101 is a dorm room cafe run by one of the developers of this website. The cafe runs biweekly and sells custom hot chocolates and tea lattes. The application can replace or supplement the ordering process. It can also serve as a helpful display for baristas to keep track of incoming orders.
+The frontend is written with **React** and the backend is written with **Flask**.
 
-#### How to Install and Run the Application
+#### The user can:
+- Input their name to claim their order.
+- Engage with the dynamic form to select the drink, milk type, stir-in ingredients, and toppings that they want for their order.
+- Input custom notes about their order.
 
-## To host the website locally you must run the follow in the project directory:
+#### The barista can:
+- View all stored and submitted orders.
+- Mark orders as finished, removing them.
+
+### Challenges during Development
+- Inexperience with backend development with **Flask**
+- Conditional rendering for dropdowns within the order form
+- Nested element mapping for displaying all orders
+
+## How to Install and Run the Application
+
+#### To host the website locally you must run the follow in the project directory:
 
 ###### `npm start`
 
