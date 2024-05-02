@@ -108,6 +108,12 @@ button:hover {
   top: 0; /* Align button to the top edge of the parent div */
   right: 0; /* Align button to the right edge of the parent div */
 }
+
+.curr-drink {
+  background-color: var(--light-mauve);
+  border-radius: 10px;
+  width: 40vw;
+}
 .two-columns {
   display: flex;
   justify-content: space-evenly;
